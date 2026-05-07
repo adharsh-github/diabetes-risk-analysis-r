@@ -50,20 +50,33 @@ aggregate(BloodPressure ~ Outcome, data, mean)
 aggregate(Age ~ Outcome, data, mean)
 
 # ------------------------------------------
-# Visualization
+# Visualization + Images
 # ------------------------------------------
 
-# Glucose distribution clearly shifts higher for diabetic patients
-ggplot(data, aes(x = Glucose, fill = factor(Outcome))) +
+# Glucose Distribution
+p1 <- ggplot(data, aes(x = Glucose, fill = factor(Outcome))) +
   geom_histogram(binwidth = 10)
 
-# BMI distribution shows higher values in diabetic group
-ggplot(data, aes(x = BMI, fill = factor(Outcome))) +
+ggsave("images/glucose_distribution.png", plot = p1)
+
+# BMI Distribution
+p2 <- ggplot(data, aes(x = BMI, fill = factor(Outcome))) +
   geom_histogram(binwidth = 2)
 
-# Age distribution indicates increased diabetes risk with age
-ggplot(data, aes(x = Age, fill = factor(Outcome))) +
+ggsave("images/bmi_distribution.png", plot = p2)
+
+# Age Distribution
+p3 <- ggplot(data, aes(x = Age, fill = factor(Outcome))) +
   geom_histogram(binwidth = 5)
+
+ggsave("images/age_distribution.png", plot = p3)
+
+# ROC Curve
+roc_obj <- roc(data$Outcome, pred)
+
+png("images/roc_curve.png")
+plot(roc_obj)
+dev.off()
 
 # ------------------------------------------
 # Correlation Analysis
