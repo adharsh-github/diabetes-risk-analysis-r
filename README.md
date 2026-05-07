@@ -56,6 +56,11 @@ Tools & Libraries
 - ggplot2
 - pROC
 
+Critical Insights:
+  Despite achieving a strong AUC (~0.83), the model demonstrates moderate sensitivity (~56%), indicating that a significant number of diabetic patients are not detected.
+
+  This highlights a key limitation in using accuracy as a primary metric in medical prediction tasks. For real-world screening applications, prioritizing sensitivity through threshold adjustment is essential to    reduce the risk of missed diagnoses.
+
 Future Works
 - Implement missing data imputation techniques
 - Explore advanced models (Random Forest, Gradient Boosting)
